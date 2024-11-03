@@ -3,7 +3,7 @@ import user from "./controller/user.js"
 
 const router = express.Router();
 
-router.use('/users', user);
+router.use('/user', user);
 
 router.use('*', (req, res) => {
   res.status(404).json({
