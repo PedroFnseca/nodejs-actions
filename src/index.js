@@ -1,5 +1,6 @@
 import express from "express";
 import router from "./router.js";
+import logger from "logger-endpoints-api";
 import { config } from "dotenv";
 import cors from "cors";
 
@@ -10,6 +11,7 @@ config();
 
 server.use(cors());
 server.use(express.json());
+server.use(logger);
 
 server.use('/api', router);
 
