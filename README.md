@@ -31,3 +31,43 @@ Abaixo está o esquema do banco de dados utilizado neste projeto:
 | updatedAt  | Data de atualização      | DateTime  | @updatedAt                      |
 | name       | Nome do usuário          | String    |                                 |
 | email      | Email do usuário         | String    | @unique   
+
+--- 
+
+## Automatização de Testes
+> Este projeto utiliza o GitHub Actions para automação de fluxos de trabalho de CI/CD. Abaixo está a configuração da action que roda a suíte de testes em cada Pull Request.
+
+[Arquivo](.github/workflows/test-on-pr.yaml) de configuração da action:
+```yaml
+name: Test on Pull Request
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+```
+
+1. executa em uma máquina virtual do GitHub com o sistema operacional Ubuntu.
+2. verifica o código do repositório.
+3. configura o ambiente Node.js.
+4. instala as dependências do projeto.
+5. executa a suíte de testes com o comando `npm test`.
+
+**Obs**: É possivel configurar o GitHub Actions poder recusar Pull Requests que não passarem nos testes. Utilizando da configuração de branchs protegidas. [Saiba mais](https://docs.github.com/pt/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-deployments-to-succeed-before-merging)
