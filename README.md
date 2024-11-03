@@ -71,3 +71,61 @@ jobs:
 5. executa a suíte de testes com o comando `npm test`.
 
 **Obs**: É possivel configurar o GitHub Actions poder recusar Pull Requests que não passarem nos testes. Utilizando da configuração de branchs protegidas. [Saiba mais](https://docs.github.com/pt/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-deployments-to-succeed-before-merging)
+
+---
+
+## Automatização de releases
+> O release basicamente é a versão do software que será disponibilizada para os usuários. Você pode utilizar para criar um apk de uma aplicação mobile, um executável de uma aplicação desktop ou um pacote de uma aplicação web, por exemplo.
+
+[Arquivo](.github/workflows/release.yaml) de configuração da action:
+```yaml
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Get version from package.json
+      id: get_version
+      run: |
+        VERSION=$(node -p -e "require('./package.json').version")
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.get_version.outputs.VERSION }}
+        release_name: Release v${{ steps.get_version.outputs.VERSION }}
+        draft: false
+        prerelease: false
+```
+
+1. executa em uma máquina virtual do GitHub com o sistema operacional Ubuntu.
+2. verifica o código do repositório.
+3. configura o ambiente Node.js.
+4. instala as dependências do projeto.
+5. obtém a versão do projeto a partir do arquivo `package.json`.
+6. cria um release no GitHub com a versão obtida.
