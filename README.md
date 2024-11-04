@@ -1,4 +1,5 @@
 # Do código ao Ambiente de Produção
+> Conteudo apresentado na [Etec Embu](https://www.etecdeembu.com.br/) Na semana técnica de Desenvolvimento de sistemas.
 
 Este repositório foi criado para ajudar na criação de GitHub Actions com foco em APIs. Ele fornece um exemplo prático de como configurar e utilizar diversas tecnologias para construir, testar e implantar uma API de forma eficiente.
 
