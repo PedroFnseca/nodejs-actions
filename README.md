@@ -7,14 +7,15 @@ Aqui você verá como automatizar processos como a criação de testes automatiz
 ## Tecnologias Utilizadas
 
 - **[Node.js](https://nodejs.org/)**: Ambiente de execução JavaScript no lado do servidor.
-- **[PostgreSQL](https://www.postgresql.org/)**: Sistema de gerenciamento de banco de dados relacional de código aberto.
 - **[Express](https://expressjs.com/)**: Framework web para Node.js, utilizado para construir a API.
-- **[Prisma](https://www.prisma.io/)**: ORM (Object-Relational Mapping) para interagir com o banco de dados PostgreSQL.
-- **[Supabase](https://supabase.com/)**: Serviço de banco de dados utilizado neste projeto.
-- **[GitHub Actions](https://github.com/features/actions)**: Plataforma de CI/CD para automação de fluxos de trabalho.
-- **[Docker](https://www.docker.com/)**: Plataforma de código aberto para construir, enviar e executar aplicativos em contêineres.
 - **[Jest](https://jestjs.io/)**: Framework de testes em JavaScript.
 - **[Logger](https://github.com/PedroFnseca/logger-endpoints-api)** : Logger para monitoramento de requisições. (Desenvolvido por mim)
+- **[PostgreSQL](https://www.postgresql.org/)**: Sistema de gerenciamento de banco de dados relacional de código aberto.
+- **[Supabase](https://supabase.com/)**: Serviço de banco de dados utilizado neste projeto.
+- **[Prisma](https://www.prisma.io/)**: ORM (Object-Relational Mapping) para interagir com o banco de dados PostgreSQL.
+- **[GitHub Actions](https://github.com/features/actions)**: Plataforma de CI/CD para automação de fluxos de trabalho.
+- **[Azure Web Apps](https://azure.microsoft.com/pt-br/services/app-service/web/)**: Serviço de hospedagem de aplicativos da Web da Microsoft.
+- **[React Native](https://reactnative.dev/)**: Biblioteca que permite o desenvolvimento de aplicativos móveis multiplataforma usando JavaScript e React.
 
 ## Banco de Dados
 
