@@ -41,6 +41,8 @@ Aqui você verá como automatizar processos como a criação de testes automatiz
 ### Mobile
 - **[React Native](https://reactnative.dev/)**: Biblioteca que permite o desenvolvimento de aplicativos móveis multiplataforma usando JavaScript e React.
 
+---
+
 ## Banco de Dados
 
 Este projeto utiliza o [Supabase](https://supabase.com/) como serviço de banco de dados e o [Prisma](https://www.prisma.io/) como ORM (Object-Relational Mapping) para interagir com o banco de dados PostgreSQL.
@@ -54,8 +56,6 @@ Este projeto utiliza o [Supabase](https://supabase.com/) como serviço de banco 
 | updatedAt  | Data de atualização      | `DateTime`  | `@updatedAt`                      |
 | name       | Nome do usuário          | `String`    |                                 |
 | email      | Email do usuário         | `String`    | `@unique`   
-
---- 
 
 ### Endpoints
 
