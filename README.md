@@ -34,6 +34,21 @@ Abaixo está o esquema do banco de dados utilizado neste projeto:
 
 --- 
 
+## Fluxo de Trabalho
+
+```mermaid
+graph TD;
+    A[GitHub] -->|Enviar Código| B[GitHub Actions]
+    B -->|Executar Testes| C[Pipeline CI/CD]
+    C -->|Implantar| D[Servidor]
+    D -->|Conectar| E[Supabase]
+    E -->|Serviço de Banco de Dados| F[PostgreSQL]
+    D -->|Usar ORM| G[Prisma ORM]
+    G -->|Interagir| F[PostgreSQL]
+```
+
+---
+
 ## Automatização de Testes
 > Este projeto utiliza o GitHub Actions para automação de fluxos de trabalho de CI/CD. Abaixo está a configuração da action que roda a suíte de testes em cada Pull Request.
 
