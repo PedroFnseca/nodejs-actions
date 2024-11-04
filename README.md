@@ -208,3 +208,92 @@ jobs:
 8. descompacta o arquivo zip.
 9. implanta o código no Azure Web App.
 
+---
+
+## Bonus: Geração de apk react-native
+> O React Native é uma biblioteca que permite o desenvolvimento de aplicativos móveis multiplataforma usando JavaScript e React. Com ele, é possível criar aplicativos para Android e iOS com uma única base de código.
+
+```yaml
+name: Create Release on Push to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Install React Native CLI
+        run: npm install -g react-native-cli
+
+      - name: Create assets directory
+        run: mkdir -p android/app/src/main/assets
+
+      - name: Bundle React Native code and assets
+        run: react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x android/gradlew
+
+      - name: Build APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: android/app/build/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          asset_content_type: application/vnd.android.package-archive
+```
+
+1. executa em uma máquina virtual do GitHub com o sistema operacional Ubuntu.
+2. verifica o código do repositório.
+3. configura o ambiente Node.js.
+4. instala as dependências do projeto.
+5. instala o React Native CLI.
+6. cria um diretório para os assets do aplicativo.
+7. gera o bundle do código e dos assets do React Native.
+8. configura o JDK 17.
+9. concede permissão de execução para o gradlew.
+10. constrói o APK do aplicativo.
+11. cria um release no GitHub.
+12. faz o upload do APK gerado para o release criado.
