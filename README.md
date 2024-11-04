@@ -5,18 +5,43 @@ Este repositório foi criado para ajudar na criação de GitHub Actions com foco
 
 Aqui você verá como automatizar processos como a criação de testes automatizados, configuração de um ambiente de integração contínua (CI) e a implantação em um ambiente de produção.
 
+## Sumário
+> Um breve resumo do conteúdo apresentado neste repositório.
+
+- [x] [Tecnologias Utilizadas](#tecnologias-utilizadas)
+  - [x] [Backend](#backend)
+  - [x] [Banco de Dados](#banco-de-dados)
+  - [x] [CI/CD e Deploy](#cicd-e-deploy)
+  - [x] [Mobile](#mobile)
+- [x] [Fluxo de Trabalho](#fluxo-de-trabalho)
+- [x] [Automatização de Testes](#automatização-de-testes)
+- [x] [Automatização de Releases](#automatização-de-releases)
+- [x] [Implantação em Ambiente de Produção](#implantação-em-ambiente-de-produção-azure-web-app)
+- [x] [Bonus: Geração de APK React Native](#bonus-geração-de-apk-react-native)
+
+---
+
 ## Tecnologias Utilizadas
 
+### Backend
 - **[Node.js](https://nodejs.org/)**: Ambiente de execução JavaScript no lado do servidor.
 - **[Express](https://expressjs.com/)**: Framework web para Node.js, utilizado para construir a API.
 - **[Jest](https://jestjs.io/)**: Framework de testes em JavaScript.
-- **[Logger](https://github.com/PedroFnseca/logger-endpoints-api)** : Logger para monitoramento de requisições. (Desenvolvido por mim)
+- **[Logger](https://github.com/PedroFnseca/logger-endpoints-api)**: Logger para monitoramento de requisições. (Desenvolvido por mim)
+
+### Banco de Dados
 - **[PostgreSQL](https://www.postgresql.org/)**: Sistema de gerenciamento de banco de dados relacional de código aberto.
 - **[Supabase](https://supabase.com/)**: Serviço de banco de dados utilizado neste projeto.
 - **[Prisma](https://www.prisma.io/)**: ORM (Object-Relational Mapping) para interagir com o banco de dados PostgreSQL.
+
+### CI/CD e Deploy
 - **[GitHub Actions](https://github.com/features/actions)**: Plataforma de CI/CD para automação de fluxos de trabalho.
 - **[Azure Web Apps](https://azure.microsoft.com/pt-br/services/app-service/web/)**: Serviço de hospedagem de aplicativos da Web da Microsoft.
+
+### Mobile
 - **[React Native](https://reactnative.dev/)**: Biblioteca que permite o desenvolvimento de aplicativos móveis multiplataforma usando JavaScript e React.
+
+---
 
 ## Banco de Dados
 
@@ -24,17 +49,24 @@ Este projeto utiliza o [Supabase](https://supabase.com/) como serviço de banco 
 
 ### Esquema do Banco de Dados
 
-Abaixo está o esquema do banco de dados utilizado neste projeto:
-
 | Nome       | Descrição                | Tipo      | Regras                          |
 |------------|--------------------------|-----------|---------------------------------|
-| id         | Identificador único      | Int       | @id @default(autoincrement())   |
-| createdAt  | Data de criação          | DateTime  | @default(now())                 |
-| updatedAt  | Data de atualização      | DateTime  | @updatedAt                      |
-| name       | Nome do usuário          | String    |                                 |
-| email      | Email do usuário         | String    | @unique   
+| id         | Identificador único      | `Int`       | `@id` `@default` `autoincrement()`  |
+| createdAt  | Data de criação          | `DateTime`  | `@default(now())`                 |
+| updatedAt  | Data de atualização      | `DateTime`  | `@updatedAt`                      |
+| name       | Nome do usuário          | `String`    |                                 |
+| email      | Email do usuário         | `String`    | `@unique`   
 
---- 
+### Endpoints
+
+| Método | Endpoint            | Descrição               |
+|--------|---------------------|-------------------------|
+| `GET`    | /api/user              | Retorna todos os usuários cadastrados (filtrados pela query string). |
+| `POST`   | /api/user              | Cria um novo usuário. |
+| `PUT`    | /api/user/:id          | Atualiza um usuário existente. |
+| `DELETE` | /api/user/:id          | Deleta um usuário existente. |
+
+---
 
 ## Fluxo de Trabalho
 
